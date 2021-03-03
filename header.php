@@ -17,7 +17,7 @@
 	        // логотип есть выводим его
 	        the_custom_logo();
         } else {
-          echo 'Логотипа нет';
+          echo  bloginfo( 'name' );
         }
       ?>
       <?php
