@@ -15,6 +15,7 @@
 body {
   font-family: "Lato Regular", sans-serif;
   font-size: 14px;
+  counter-reset: section;
 }
 
 * {
@@ -22,8 +23,7 @@ body {
           box-sizing: border-box;
 }
 
-* .container {
-  border: 1px;
+.container {
   max-width: 1140px;
   width: 90%;
   margin: auto;
@@ -68,7 +68,7 @@ body {
 
 .search-form {
   position: relative;
-  width: 270px;
+  width: 25%;
   height: 40px;
 }
 
@@ -85,26 +85,26 @@ body {
 }
 
 .search-form input::-webkit-input-placeholder {
-  color: #ffffff;
+  color: #939699;
 }
 
 .search-form input:-ms-input-placeholder {
-  color: #ffffff;
+  color: #939699;
 }
 
 .search-form input::-ms-input-placeholder {
-  color: #ffffff;
+  color: #939699;
 }
 
 .search-form input::placeholder {
-  color: #ffffff;
+  color: #939699;
 }
 
 .search-form button {
   position: absolute;
-  right: 25px;
+  right: 20px;
   top: 0px;
-  width: 20px;
+  width: 25px;
   height: 40px;
   background-image: url(../images/search.svg);
   background-repeat: no-repeat;
@@ -172,6 +172,8 @@ body {
   right: 0;
   bottom: 0;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   z-index: 0;
 }
 
@@ -227,8 +229,8 @@ body {
 }
 
 .hero .left .post-text {
-  position: relative;
   z-index: 2;
+  position: relative;
 }
 
 .hero .left .more {
@@ -282,6 +284,9 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.hero .right .post-categories a {
   font-weight: 900;
   font-size: 12px;
   line-height: 15px;
@@ -295,7 +300,7 @@ body {
 }
 
 .hero .right .post:hover {
-  background-color: #D9DADB;
+  background-color: #f5f5f5;
 }
 
 .hero .right .post-title {
