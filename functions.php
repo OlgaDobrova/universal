@@ -46,3 +46,7 @@ function delete_intermediate_image_sizes( $sizes ){
 		'2048x2048',
 	] );
 }
+
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'homepage-thumb', 65, 65, true ); // Кадрирование изображения
+}
