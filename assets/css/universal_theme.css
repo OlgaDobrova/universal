@@ -114,20 +114,32 @@ body {
   cursor: pointer;
 }
 
+.home {
+  background-color: #E5E5E5;
+}
+
+.front-page-header {
+  padding-top: 30px;
+  background-color: #262D33;
+  position: relative;
+  height: 475px;
+}
+
 .hero {
-  border: 1px solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   overflow: hidden;
   border-radius: 10px;
   min-height: 570px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 .hero .left {
   -ms-flex-preferred-size: 75%;
       flex-basis: 75%;
-  border: 1px solid blue;
   position: relative;
   padding: 55px 55px 100px 55px;
   display: -webkit-box;
@@ -142,10 +154,10 @@ body {
           justify-content: space-between;
 }
 
-.hero .left::after {
+.hero .left::before {
   content: '';
   position: absolute;
-  z-index: -2;
+  z-index: 1;
   width: 100%;
   height: 100%;
   left: 0;
@@ -159,10 +171,13 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: -1;
+  height: 100%;
+  z-index: 0;
 }
 
 .hero .left .autor {
+  position: relative;
+  z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -187,7 +202,12 @@ body {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.hero .left .category-name {
+.hero .left .post-categories {
+  padding: 0;
+  margin: 0;
+}
+
+.hero .left .post-categories a {
   color: #4592FF;
   text-transform: uppercase;
   font-weight: 900;
@@ -203,6 +223,12 @@ body {
   font-family: 'Roboto Slab', serif;
   margin-top: 20px;
   margin-bottom: 50px;
+  max-width: 590px;
+}
+
+.hero .left .post-text {
+  position: relative;
+  z-index: 2;
 }
 
 .hero .left .more {
@@ -229,7 +255,7 @@ body {
       flex-basis: 25%;
 }
 
-.hero .recommend {
+.hero .right .recommend {
   margin-left: 25px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -239,24 +265,44 @@ body {
   text-transform: uppercase;
 }
 
-.hero .posts-list {
+.hero .right .posts-list {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.hero .post {
+.hero .right .post {
   padding: 17px 25px 19px 25px;
+  margin: 0;
+  border-top: 1px solid #D9DADB;
+  min-height: 100px;
 }
 
-.hero .post .category-name {
+.hero .right .post-categories {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-weight: 900;
   font-size: 12px;
   line-height: 15px;
-  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
-.hero .post-title {
+.hero .right .post-permalink {
+  text-decoration: none;
+  color: #4B5157;
+}
+
+.hero .right .post:hover {
+  background-color: #D9DADB;
+}
+
+.hero .right .post-title {
+  min-height: 40px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 8px;
 }

@@ -5,6 +5,8 @@ if ( ! function_exists( 'universal_theme_setup' ) ) :
     function universal_theme_setup() {
       //добавление заголовка сайта
       add_theme_support( 'title-tag' );
+      //Добавление миниатюр
+      add_theme_support( 'post-thumbnails', array( 'post' ) );
       //добавление пользовательского логотипа
       add_theme_support( 'custom-logo', [
 	        'width'                  => 163,
