@@ -326,10 +326,10 @@ class Social_Widget extends WP_Widget {
 // конец класса Social_Widget
 
 // регистрация Social_Widget в WordPress
-function register_foo_widget() {
+function register_social_widget() {
 	register_widget( 'Social_Widget' );
 }
-add_action( 'widgets_init', 'register_foo_widget' );
+add_action( 'widgets_init', 'register_social_widget' );
 
 
 
