@@ -2,21 +2,21 @@
   &-front-page
     margin-left: 30px
     margin-top: 30px
-.widget
+.widget //для всех виджетов
   background-color: #ffffff
   border-radius: 10px
-  &-title
+  &-title //для всех заголовков виджетов
     padding: 20px 25px
-    border-bottom: 1px solid #D9DADB
+    border-bottom: 1px solid #D9DADB //горизонтальная черта под заголовком
     font-size: 14px
     line-height: 20px
     font-family: "Lato Black",sans-serif
     margin: 0
-    text-transform: uppercase
-  &-downloader
-    background: #3BBDC4 url('../images/file.svg') no-repeat top 22px right 24px
+    text-transform: uppercase //заголовок загл буквами
+  &-downloader //виджет скачивание файла
+    background: #3BBDC4 url('../images/file.svg') no-repeat top 22px right 24px //фоном картинка
     border-radius: 10px
-    color: #ffffff
+    color: #ffffff //цвет текста
     padding: 25px
     padding-bottom: 55px
     position: relative
@@ -55,7 +55,15 @@
       font-size: 14px
       line-height: 20px
       margin: 0
-  .tagcloud
+  &-social  //виджет соцсети
+
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    &-icon
+      margin-right: 10px
+  .tagcloud    //виджет - теги
     display: flex
     align-items: center
     justify-content: flex-start

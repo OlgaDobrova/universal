@@ -100,7 +100,8 @@ class Downloader_Widget extends WP_Widget {
 			echo '<p>'. $description . '</p>';	}
     
     if ( ! empty( $link ) ) {
-			echo '<a target="black" class="widget-link" href="' . $link .'">
+			//target="_blank" - открыть ссылку в новом окне
+			echo '<a target="_blank" class="widget-link" href="' . $link .'">
 			<img class="widget-link-icon" src=" ' . get_template_directory_uri().'/assets/images/download.svg">
 			Скачать</a>';	}
 
@@ -201,7 +202,7 @@ class Social_Widget extends WP_Widget {
 		parent::__construct(
 			'social_widget', // ID виджета, если не указать (оставить ''), то ID будет равен названию класса в нижнем регистре: social_widget
 			'Ссылки на соц сети',
-			array( 'description' => 'Популярные соц сети', 'classname' => 'social_widget', )
+			array( 'description' => 'Популярные соц сети', 'classname' => 'widget_social', )
 		);
 
 		// скрипты/стили виджета, только если он активен
@@ -219,25 +220,27 @@ class Social_Widget extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 		$title = $instance['title'] ;
-		$social1 = $instance['social1'] ;
-		$social2 = $instance['social2'] ;
-		$social3 = $instance['social3'] ;
-		$social4 = $instance['social4'] ;
+		$fb = $instance['fb'] ;
+		$ig = $instance['ig'] ;
+		$vk = $instance['vk'] ;
+		$tw = $instance['tw'] ;
 
 		echo $args['before_widget'];
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
-		if ( ! empty( $social1 ) ) {
-			echo '<a target="black" class="widget-social1" href="' . $social1 .'">
-			<img class="widget-social1-icon" src=" ' . get_template_directory_uri().'/assets/images/facebook.svg">
-			facebook</a>';	}
-		if ( ! empty( $social2 ) ) {
-			echo '<a href="' . $social2 .'">instagram</a>';	}
-		if ( ! empty( $social3 ) ) {
-			echo '<a href="' . $social3 .'">vk</a>';	}
-		if ( ! empty( $social4 ) ) {
-			echo '<a href="' . $social4 .'">twitter</a>';	}
+		if ( ! empty( $fb ) ) {
+			echo '<a target="_blank" class="widget-social" href="' . $fb .'">
+			<img class="widget-social-icon" src=" ' . get_template_directory_uri() . '/assets/images/facebook.svg"></a>';	}
+		if ( ! empty( $ig ) ) {
+			echo '<a target="_blank" class="widget-social" href="' . $ig .'">
+			<img class="widget-social-icon" src=" ' . get_template_directory_uri().'/assets/images/instagram.svg"></a>';	}
+		if ( ! empty( $vk ) ) {
+			echo '<a target="_blank" class="widget-social" href="' . $vk .'">
+			<img class="widget-social-icon" src=" ' . get_template_directory_uri().'/assets/images/vk.svg"></a>';	}
+		if ( ! empty( $tw ) ) {
+			echo '<a target="_blank" class="widget-social" href="' . $tw .'">
+			<img class="widget-social-icon" src=" ' . get_template_directory_uri().'/assets/images/twitter.svg"></a>';	}
 
 		echo $args['after_widget'];
 	}
@@ -249,10 +252,10 @@ class Social_Widget extends WP_Widget {
 	 */
 	function form( $instance ) { //объявление переменных
 		$title = @ $instance['title'] ?: 'Популярные соц сети'; //Заголовок по умолчанию
-		$social1 = @ $instance['social1'] ?: ''; //Заголовка по умолчанию нет
-		$social2 = @ $instance['social2'] ?: ''; //Заголовка по умолчанию нет
-		$social3 = @ $instance['social3'] ?: ''; //Заголовка по умолчанию нет
-		$social4 = @ $instance['social4'] ?: ''; //Заголовка по умолчанию нет
+		$fb = @ $instance['fb'] ?: ''; //Заголовка по умолчанию нет
+		$ig = @ $instance['ig'] ?: ''; //Заголовка по умолчанию нет
+		$vk = @ $instance['vk'] ?: ''; //Заголовка по умолчанию нет
+		$tw = @ $instance['tw'] ?: ''; //Заголовка по умолчанию нет
 
 		?>
 		<p>
@@ -260,20 +263,20 @@ class Social_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'social1' ); ?>"><?php _e( 'facebook:' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'social1' ); ?>" name="<?php echo $this->get_field_name( 'social1' ); ?>" type="text" value="<?php echo esc_attr( $social1 ); ?>">
+			<label for="<?php echo $this->get_field_id( 'fb' ); ?>"><?php _e( 'facebook:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'fb' ); ?>" name="<?php echo $this->get_field_name( 'fb' ); ?>" type="text" value="<?php echo esc_attr( $fb ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'social2' ); ?>"><?php _e( 'instagram:' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'social2' ); ?>" name="<?php echo $this->get_field_name( 'social2' ); ?>" type="text" value="<?php echo esc_attr( $social2 ); ?>">
+			<label for="<?php echo $this->get_field_id( 'ig' ); ?>"><?php _e( 'instagram:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'ig' ); ?>" name="<?php echo $this->get_field_name( 'ig' ); ?>" type="text" value="<?php echo esc_attr( $ig ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'social3' ); ?>"><?php _e( 'vk:' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'social3' ); ?>" name="<?php echo $this->get_field_name( 'social3' ); ?>" type="text" value="<?php echo esc_attr( $social3 ); ?>">
+			<label for="<?php echo $this->get_field_id( 'vk' ); ?>"><?php _e( 'vk:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'vk' ); ?>" name="<?php echo $this->get_field_name( 'vk' ); ?>" type="text" value="<?php echo esc_attr( $vk ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'social4' ); ?>"><?php _e( 'twitter:' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'social4' ); ?>" name="<?php echo $this->get_field_name( 'social4' ); ?>" type="text" value="<?php echo esc_attr( $social4 ); ?>">
+			<label for="<?php echo $this->get_field_id( 'tw' ); ?>"><?php _e( 'twitter:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'tw' ); ?>" name="<?php echo $this->get_field_name( 'tw' ); ?>" type="text" value="<?php echo esc_attr( $tw ); ?>">
 		</p>
 		<?php 
 	}
@@ -291,10 +294,10 @@ class Social_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['social1'] = ( ! empty( $new_instance['social1'] ) ) ? strip_tags( $new_instance['social1'] ) : '';
-		$instance['social2'] = ( ! empty( $new_instance['social2'] ) ) ? strip_tags( $new_instance['social2'] ) : '';
-		$instance['social3'] = ( ! empty( $new_instance['social3'] ) ) ? strip_tags( $new_instance['social3'] ) : '';
-		$instance['social4'] = ( ! empty( $new_instance['social4'] ) ) ? strip_tags( $new_instance['social4'] ) : '';
+		$instance['fb'] = ( ! empty( $new_instance['fb'] ) ) ? strip_tags( $new_instance['fb'] ) : '';
+		$instance['ig'] = ( ! empty( $new_instance['ig'] ) ) ? strip_tags( $new_instance['ig'] ) : '';
+		$instance['vk'] = ( ! empty( $new_instance['vk'] ) ) ? strip_tags( $new_instance['vk'] ) : '';
+		$instance['tw'] = ( ! empty( $new_instance['tw'] ) ) ? strip_tags( $new_instance['tw'] ) : '';
 
 		return $instance;
 	}
@@ -350,7 +353,7 @@ function edit_widget_tag_cloud_args( $args ){
 	$args['unit']='px';   //ед.измерения меняем на пиксели
 	$args['smallest']=14; //фильтруем (переназначаем) Размер текста для меток с min кол-вом записей
 	$args['largest']=14;  //Размер текста для меток с max количеством записей
-	$args['number']=11;	  //Максимально количество меток, которое будет показано в списке
+	$args['number']=6;	  //Максимально количество меток, которое будет показано в списке
 	$args['orderby']='count'; //сортировка по кол-ву повторений
 	return $args;         //вернуть рез изменений
 }
