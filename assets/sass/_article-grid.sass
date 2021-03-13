@@ -5,8 +5,8 @@
 .article
   &-grid
     max-width: 850px
-    //сверху и снизу отступ в 30px, сбоков - 0px
-    margin: 30px 0
+    //сверху и снизу отступ в 30px, сбоков - 0px, снизу - 60px
+    margin: 30px 0 60px
     padding: 0
     list-style: none
     //задаем сетку
@@ -23,7 +23,7 @@
     &-item
       border-radius: 10px
       background-color: #fff
-      //скругления у всех углов 1го поста - ничего за пределы карточки!
+      //скругления у всех углов списка постов - ничего за пределы карточки!
       overflow: hidden
       &-1
         grid-area: 1 / 1 / 2 / 3
@@ -178,7 +178,8 @@
             width: 100%
             object-fit: cover
           &-title
-            padding: 15px 25px 35px
+            margin: 0
+            padding: 10px 25px 35px
             font-family: Roboto Slab
             font-style: normal
             font-weight: bold

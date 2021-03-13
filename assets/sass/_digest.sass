@@ -1,0 +1,65 @@
+.digest
+  margin: 0
+  padding: 0
+  margin-top: 30px
+  list-style: none //отмена точеки у маркированного списка
+  border-radius: 10px //скругление контура НЕ РАБОТАЕТ
+  background-color: #ffffff
+  &-wrapper   //левая секция контейнера - ДАЙДЖЕСТ из 6 постов
+    width: 848px
+  &-item //каждый пост
+    height: 245px
+    display: flex
+    align-items: center
+    padding: 25px 0
+    &:not(:last-child)          //для всех постов, кроме последнего
+      border-bottom: 1px solid #D9DADB //нижняя граница выделена цветом
+    &:hover              //при наведении курсора
+      border: 1px solid #8b8c8d
+    &-permalink    //все что внутри ссылки (тега А)
+      text-decoration: none //текст без подчеркивания
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 25px
+      position: relative
+      &-thumb  //картинка
+        display: flex
+        align-items: center
+        justify-content: space-between
+        object-fit: cover
+        width: 336px
+        height: 195px
+        margin-right: 25px
+      &-info
+        margin: 0
+        padding: 0
+        &-category
+          text-transform: uppercase
+          margin: 0
+          font-size: 12px
+          line-height: 15px
+          color: #4592FF
+        &-title
+          color: #262D33
+          font-family: Roboto Slab
+          font-style: Bold
+          font-size: 20px
+          line-height: 25px
+          margin-top: 15px
+          margin-bottom: 10px
+          max-width: 400px
+        &-excerpt
+          font-size: 14px
+          line-height: 20px
+          color: #4B5157
+          margin: 0 0 20px
+          max-width: 400px
+        &-footer
+          display: flex
+          align-items: center
+          &-date, &-likes, &-comments
+            padding: 0 11px
+            color: #939699
+            display: flex
+            align-items: center
