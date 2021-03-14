@@ -1,3 +1,8 @@
+.digest-wrapper
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  padding-bottom: 30px
 .digest
   margin: 0
   padding: 0
@@ -5,8 +10,7 @@
   list-style: none //отмена точеки у маркированного списка
   border-radius: 10px //скругление контура НЕ РАБОТАЕТ
   background-color: #ffffff
-  &-wrapper   //левая секция контейнера - ДАЙДЖЕСТ из 6 постов
-    width: 848px
+  width: 848px
   &-item //каждый пост
     height: 245px
     display: flex
@@ -34,12 +38,7 @@
       &-info
         margin: 0
         padding: 0
-        &-category
-          text-transform: uppercase
-          margin: 0
-          font-size: 12px
-          line-height: 15px
-          color: #4592FF
+        align-items: center
         &-title
           color: #262D33
           font-family: Roboto Slab

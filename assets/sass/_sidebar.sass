@@ -1,9 +1,12 @@
+body
+  counter-reset: section //сброс счетчика постов
 .sidebar
   a
     text-decoration: none
   &-front-page
     margin-left: 30px
     margin-top: 30px
+    max-width: 263px
 .widget //для всех виджетов
   background-color: #ffffff
   border-radius: 10px
@@ -75,6 +78,42 @@
       &-title
         text-align: center
         border: none
+  &-recent-posts
+    &-wrapper
+      padding: 0 25px 17px
+    a
+      display: flex
+      align-items: center
+      padding-top: 17px
+      padding-bottom: 17px
+      position: relative
+      &:not(:last-child)
+        border-bottom: 1px solid #D9DADB
+      &::before
+        position: absolute
+        right: 5px
+        color: #262D33
+        opacity: 0.08
+        font-size: 70px
+        line-height: 50px
+        font-family: "Lato Black", sans-serif //полужирный шрифт
+        font-style: italic //курсив
+        counter-increment: section //настройка счетчика постов
+        content: counter(section)
+      img
+        width: 60px
+        height: 60px
+        margin-right: 10px
+      h4
+        font-size: 14px
+        line-height: 20px
+        color: #4B5157
+        margin-top: 0
+        margin-bottom: 3px
+      span
+        font-size: 12px
+        line-height: 15px
+        color: #939699
   .tagcloud    //виджет - теги
     display: flex
     align-items: center

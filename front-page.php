@@ -30,7 +30,19 @@
                 </div>
               </a>
               <div class="post-text">
-                <?php the_category( );?>
+                <?php 
+                  //цикл пока...есть заведенные категории
+                  foreach (get_the_category() as $category) {
+                    printf(
+                      '<a href="%s" class="category-link %s">%s</a>',
+                      //ecs_url(),esc_html() - обеспечивают безопастность ссылкам в сети
+                      esc_url(get_category_link( $category ) ),
+                      //$category -> slug как категория прописана в админке (ярлак категории)
+                      esc_html( $category -> slug ),
+                      esc_html( $category -> name ) //название категории
+                    );
+                  }
+                ;?>
                 <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(),0,60,'...') ;?></h2>
                 <a href="<?php echo get_the_permalink()?>" class="more">Читать далее</a>
               </div>
@@ -66,7 +78,17 @@
             		setup_postdata( $post );
                 ?>
                 <li class="post">
-                <?php the_category( );?>
+                <?php //цикл пока...есть заведенные категории
+                  foreach (get_the_category() as $category) {
+                    printf(
+                      '<a href="%s" class="category-link %s">%s</a>',
+                      //ecs_url(),esc_html() - обеспечивают безопастность ссылкам в сети
+                      esc_url(get_category_link( $category ) ),
+                      //$category -> slug как категория прописана в админке (ярлак категории)
+                      esc_html( $category -> slug ),
+                      esc_html( $category -> name ) //название категории
+                    );
+                  };?>
                 <a class="post-permalink" href="<?php echo get_the_permalink()?>">
                   <h4 class="post-title"><?php echo wp_trim_words(get_the_title(), 6, ' ...' );?></h4>
                 </a>
@@ -292,7 +314,7 @@
     </ul>
     <!--/.article-grid/ --> 
     <!--/.Подключаем сайдбар/ --> 
-    <?php get_sidebar();?>
+    <?php get_sidebar('home-top');?>
   </div>
   <!--/.main-grid/ --> 
 </div>
@@ -353,7 +375,21 @@ wp_reset_postdata(); // Сбрасываем $post
           <!--всю информацию отделю от картинки-->
           <div class="digest-item-permalink-info">
             <!--выводим категорию-->
-            <span class="digest-item-permalink-info-category"><?php $category = get_the_category(); echo $category[0]->name;?></span>
+            <span class="digest-item-permalink-info-category">
+              <?php 
+                //цикл пока...есть заведенные категории
+                foreach (get_the_category() as $category) {
+                  printf(
+                    '<a href="%s" class="category-link %s">%s</a>',
+                    //ecs_url(),esc_html() - обеспечивают безопастность ссылкам в сети
+                    esc_url(get_category_link( $category ) ),
+                    //$category -> slug как категория прописана в админке (ярлак категории)
+                    esc_html( $category -> slug ),
+                    esc_html( $category -> name ) //название категории
+                  );
+                }
+              ;?>
+            </span>
             <!--выводим наименование статьи-->
             <h4 class="digest-item-permalink-info-title"> 
               <?php echo mb_strimwidth(get_the_title(),0,50,'...') ;?>
@@ -393,6 +429,8 @@ wp_reset_postdata(); // Сбрасываем $post
         wp_reset_postdata(); // Сбрасываем $post
       ?>
     </ul>
+    <!--/.Подключаем нижний сайдбар на главной/ --> 
+    <?php get_sidebar('home-bottom');?>
   </div>
   <!--/.digest-wrapper/ -->
 </div>
