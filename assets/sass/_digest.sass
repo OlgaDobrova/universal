@@ -1,14 +1,14 @@
-.digest-wrapper
+.digest-wrapper  //дайджест+ нижний сайдбар на главной
   display: flex
   align-items: flex-start
   justify-content: space-between
   padding-bottom: 30px
-.digest
+.digest     //дайджест, все посты
   margin: 0
   padding: 0
   margin-top: 30px
   list-style: none //отмена точеки у маркированного списка
-  border-radius: 10px //скругление контура НЕ РАБОТАЕТ
+  border-radius: 10px //скругление контура
   background-color: #ffffff
   width: 848px
   &-item //каждый пост
@@ -22,43 +22,46 @@
       border: 1px solid #8b8c8d
     &-permalink    //все что внутри ссылки (тега А)
       text-decoration: none //текст без подчеркивания
-      display: flex
-      justify-content: space-between
-      align-items: center
-      padding: 25px
+      padding: 0 0 0 25px
       position: relative
       &-thumb  //картинка
+        position: relative
         display: flex
         align-items: center
         justify-content: space-between
         object-fit: cover
         width: 336px
         height: 195px
-        margin-right: 25px
-      &-info
-        margin: 0
-        padding: 0
+  &-info
+    margin: 0
+    padding: 0 25px
+    align-items: center
+    &-title
+      color: #262D33
+      font-family: Roboto Slab
+      font-style: Bold
+      font-size: 20px
+      line-height: 25px
+      margin-top: 15px
+      margin-bottom: 10px
+      max-width: 400px
+    &-excerpt
+      font-size: 14px
+      line-height: 20px
+      color: #4B5157
+      margin: 0 0 20px
+      max-width: 400px
+    &-footer
+      display: flex
+      align-items: center //выравнивание по вертикали
+      &-date, &-likes, &-comments
+        padding: 0 11px
+        color: #939699
+        display: flex
         align-items: center
-        &-title
-          color: #262D33
-          font-family: Roboto Slab
-          font-style: Bold
-          font-size: 20px
-          line-height: 25px
-          margin-top: 15px
-          margin-bottom: 10px
-          max-width: 400px
-        &-excerpt
-          font-size: 14px
-          line-height: 20px
-          color: #4B5157
-          margin: 0 0 20px
-          max-width: 400px
-        &-footer
-          display: flex
-          align-items: center
-          &-date, &-likes, &-comments
-            padding: 0 11px
-            color: #939699
-            display: flex
-            align-items: center
+  .icon
+    margin: 0
+    padding: 0
+    width: 19px
+    height: 15px
+    fill: #BCBFC2

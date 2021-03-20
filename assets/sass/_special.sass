@@ -1,0 +1,185 @@
+.special
+  background-color: #262D33
+  padding: 60px 0
+  &-grid
+    display: flex
+    justify-content: space-between
+.photo-report
+  height: 570px
+  width: 555px
+  //за пределы рубрики ничто не выходит
+  overflow: hidden
+  border-radius: 10px
+  position: relative
+  .category-link
+    color: #FFFFFF
+    border-radius: 3px
+    background: #3DC47E
+    font-size: 12px
+    line-height: 15px
+    align-self: start
+    text-transform: none
+    padding: 5px 12px
+    position: absolute
+    left: 18px
+    top: 18px
+  .author
+    &-name
+      //делаем текст имя автора блочным
+      display: block
+      font-size: 14px
+      line-height: 20px
+      color: #FFFFFF
+    &-rank
+      font-size: 12px
+      line-height: 15px
+      color: rgba(#FFFFFF,0.4)
+    &-avatar
+      border-radius: 50%
+      width: 45px
+      height: 45px
+      margin-bottom: 8px
+  &-title
+    font-family: Roboto Slab
+    font-size: 40px
+    line-height: 50px
+    color: #FFFFFF
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: linear-gradient(0deg, rgba(64, 48, 61, 0.35), rgba(64, 48, 61, 0.35))
+    z-index: 1
+  &-button
+    color: #ffffff
+    background: #4592FF
+    border-radius: 20px
+    padding: 10px 20px
+    font-size: 14px
+    line-height: 20px
+    fill: #ffffff
+    display: flex
+    align-items: center
+    margin-bottom: 40px
+    &:hover
+      color: #ffffff
+  &-icon
+    margin-right: 8px
+  &-counter
+    margin-left: 8px
+    color: #ffffff
+  &-content
+    position: relative
+    z-index: 2
+    display: flex
+    //расстановка текста по вертикали
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+    padding: 18px
+    height: 100%
+    text-align: center
+  &-slider
+    position: absolute
+    z-index: 0
+    //привязан к левому верхнему углу
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    .swiper-slide
+      height: 100%
+      img
+        width: 100%
+        height: inherit
+        object-fit: cover
+.main2-grid
+  width: 555px
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+.other
+  margin: 0
+  padding: 0
+  list-style: none
+  //задаем сетку
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-template-rows: repeat(3, 1fr)
+  grid-column-gap: 29px
+  grid-row-gap: 30px
+  &-item
+    border-radius: 10px
+    //за пределы рубрики ничто не выходит
+    overflow: hidden
+    &-1
+      grid-area: 1 / 1 / 2 / 3
+      background: #B4D1E0
+      padding: 35px
+      .thumb
+        border: 1px solid red
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        right: 0
+        object-fit: cover
+
+      .category-name
+        color: #6E99AE
+        font-size: 12px
+        line-height: 15px
+        text-transform: uppercase
+        margin-bottom: 20px
+        z-index: 2
+      .title
+        color: #262D33
+        font-family: Roboto Slab
+        font-style: normal
+        font-weight: bold
+        font-size: 25px
+        line-height: 30px
+        width: 243px
+      .excerpt
+        color: #4B5157
+        font-size: 14px
+        line-height: 20px
+        margin-bottom: 45px
+        width: 243px
+    &-default
+      position: relative
+      background: #FFFFFF
+      border-radius: 10px
+      .permalink
+        padding: 25px 25px 30px
+        position: absolute
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: flex-start
+        .title
+          font-size: 16px
+          line-height: 25px
+          margin: 0
+          margin-bottom: 5px
+          color: #262D33
+          font-family: Roboto Slab
+          font-style: normal
+          font-weight: bold
+          font-size: 16px
+          line-height: 25px
+        .excerpt
+          font-size: 14px
+          line-height: 20px
+          margin: 0
+          color: #4B5157
+          margin-bottom: auto
+        .date
+          color: #939699
+          font-size: 12px
+          line-height: 15px

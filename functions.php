@@ -232,6 +232,7 @@ class Social_Widget extends WP_Widget {
 		}
 		if ( ! empty( $fb ) ) {
 			echo '<a target="_blank" class="widget-social" href="' . $fb .'">
+			
 			<img class="widget-social-icon" src=" ' . get_template_directory_uri() . '/assets/images/facebook.svg"></a>';	}
 		if ( ! empty( $ig ) ) {
 			echo '<a target="_blank" class="widget-social" href="' . $ig .'">
@@ -381,7 +382,14 @@ class Recent_Posts_Widget extends WP_Widget {
 					setup_postdata($post);
 					?>
 					<a href="<?php the_permalink()?>" class="recent-post-link">
-						<img class="recent-posts-thumb" src="<?php echo get_the_post_thumbnail_url(null,	'thumbnail')?>" alt="">
+						<img class="recent-posts-thumb" src="<?php 
+							if ( has_post_thumbnail() ) {
+                echo get_the_post_thumbnail_url();
+            	}
+            	else {
+            	    echo get_template_directory_uri().'/assets/images/img-default.png';
+            	}
+						?>" alt="">
 						<div class="recent-posts-info">
 							<h4><?php echo mb_strimwidth(get_the_title(),0,30,'...') ; ?></h4>
 							<span class="recent-posts-time">
@@ -480,8 +488,11 @@ add_action( 'widgets_init', 'register_recent_posts_widget' );
 
 function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
-  wp_enqueue_style( 'universal_theme-style', get_template_directory_uri( ).'/assets/css/universal_theme.css','style',time());
+  wp_enqueue_style( 'swiper-slider', get_template_directory_uri( ).'/assets/css/swiper-bundle.min.css','style',time());
+	wp_enqueue_style( 'universal_theme-style', get_template_directory_uri( ).'/assets/css/universal_theme.css','style',time());
   wp_enqueue_style('Roboto-Slab','https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+	wp_enqueue_script('swiper', get_template_directory_uri().'/assets/js/swiper-bundle.min.js',null,time(),true);
+	wp_enqueue_script('scripts',get_template_directory_uri().'/assets/js/scripts.js','swiper',time(),true);
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
