@@ -6,7 +6,7 @@
     justify-content: space-between
 .photo-report
   height: 570px
-  width: 555px
+  width: 49%
   //за пределы рубрики ничто не выходит
   overflow: hidden
   border-radius: 10px
@@ -97,7 +97,7 @@
         height: inherit
         object-fit: cover
 .main2-grid
-  width: 555px
+  width: 49%
   display: flex
   justify-content: space-between
   align-items: flex-start
@@ -108,8 +108,9 @@
   list-style: none
   //задаем сетку
   display: grid
-  grid-template-columns: repeat(2, 1fr)
-  grid-template-rows: repeat(3, 1fr)
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
+  grid-template-rows: repeat(2, minmax(200px, max-content) )
+  grid-auto-rows: minmax(200px, max-content)
   grid-column-gap: 29px
   grid-row-gap: 30px
   &-item
@@ -183,3 +184,15 @@
           color: #939699
           font-size: 12px
           line-height: 15px
+@media screen and ( max-width: 1024px )
+  .special
+    &-grid
+      flex-direction: column
+  .photo-report
+    width: 100%
+    margin-bottom: 30px
+  .main2-grid
+    width: 100%
+    .other
+      grid-template-columns: repeat(auto-fit, minmax(49%, 1fr))
+      grid-column-gap: 2%

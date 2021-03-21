@@ -10,7 +10,7 @@
   list-style: none //отмена точеки у маркированного списка
   border-radius: 10px //скругление контура
   background-color: #ffffff
-  width: 848px
+  width: 74%
   &-item //каждый пост
     height: 245px
     display: flex
@@ -65,3 +65,14 @@
     width: 19px
     height: 15px
     fill: #BCBFC2
+@media screen and ( max-width: 1024px )
+  .digest
+    width: 65%
+    &-item
+      height: max-content
+@media screen and ( max-width: 960px )
+  .digest-wrapper
+    flex-wrap: wrap
+  .digest
+    width: 100%
+    margin-bottom: 30px

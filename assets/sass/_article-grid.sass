@@ -4,15 +4,16 @@
   align-items: flex-start
 .article
   &-grid
-    max-width: 850px
+    width: 74%
     //сверху и снизу отступ в 30px, сбоков - 0px, снизу - 60px
     margin: 30px 0 60px
     padding: 0
     list-style: none
     //задаем сетку
     display: grid
-    grid-template-columns: repeat(3, 1fr)
-    grid-template-rows: minmax(min-content, max-content) repeat(2, 170px)
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
+    grid-template-rows: repeat(3, minmax(200px, max-content) )
+    grid-auto-rows: minmax(200px, max-content)
     //расстояние м/д ячейками
     grid-gap: 30px
     &-permalink
@@ -213,3 +214,25 @@
     font-size: 12px
     line-height: 15px
     margin-left: 5px
+@media screen and ( max-width: 1200px )
+  .article
+    &-grid
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr))
+      &-item
+        grid-area: auto
+@media screen and ( max-width: 1024px )
+  .article
+    &-grid
+      width: 65%
+      grid-template-columns: 1fr
+      grid-template-rows: repeat(3,minmax(300px, max-content))
+      &-item
+        .tag
+          margin-bottom: 20px
+@media screen and ( max-width: 960px )
+  .main
+    &-grid
+      flex-wrap: wrap
+  .article
+    &-grid
+      width: 100%

@@ -43,3 +43,20 @@
   width: 15px
   height: 15px
   fill: #ffffff
+@media screen and ( max-width: 1024px)
+  .article
+    &-list
+      flex-wrap: wrap
+    &-item
+      width: 50%
+      padding: 25px
+    &-permalink
+      width: 60%
+@media screen and ( max-width: 768px)
+  .article
+    &-list
+      margin-top: 30px
+@media screen and ( max-width: 576px)
+  .article
+    &-item
+      width: 100%
