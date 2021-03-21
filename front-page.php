@@ -579,6 +579,10 @@ wp_reset_postdata(); // Сбрасываем $post
             //получаем 3 поста
           	'posts_per_page' => 3,
           ] );
+          $categ = new WP_Query( [
+            //получаем 3 поста
+          	'posts_per_page' => 1,
+          ] );
           
           //проверяем наличие постов
           if ( $query->have_posts() ) {
@@ -593,10 +597,15 @@ wp_reset_postdata(); // Сбрасываем $post
                   ?> 
                   <li class="other-item other-item-1">
                     <!--вывожу фото с дядькой, всегда только он или нет фото-->
-                    <img src="<?php 
+                    
+
+                   <img src="<?php 
                           echo get_template_directory_uri().'/assets/images/suitcase.png'
                       ?>" alt=""   class="<thumb">
+
+
                     <!--вывожу категорию-->
+
                     <span class="category-name"><?php $category = get_the_category();
                       echo $category[0]->name;?></span>
                     <!--вывожу заголовок-->
@@ -643,4 +652,4 @@ wp_reset_postdata(); // Сбрасываем $post
   <!--/.container/ -->
 </div>
 <!--/.special/ -->
-<?php wp_footer();?>
+<?php get_footer();?>
