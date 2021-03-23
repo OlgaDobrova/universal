@@ -572,41 +572,30 @@ wp_reset_postdata(); // Сбрасываем $post
       <div class="main2-grid">  <!--main2-grid - Моя сетка из 3 статей-->
         <ul class="other"> <!--Тег <ul> устанавливает маркированный список-->
                                <!--<li>элемент маркированного списка</li>-->
-          <?php		                 
+          <?php                    
           global $post;
           //формируем запрос в базу данных    
           $query = new WP_Query( [
             //получаем 3 поста
-          	'posts_per_page' => 3,
+            'posts_per_page' => 3,
+            'category_name'  => 'career',
           ] );
-          $categ = new WP_Query( [
-            //получаем 3 поста
-          	'posts_per_page' => 1,
-          ] );
-          
           //проверяем наличие постов
           if ( $query->have_posts() ) {
             //создаем переменную - счетчик постов
             $cnt=0;
             //выводим посты, пока они есть
-          	while ( $query->have_posts() ) {
-          		$query->the_post();
+            while ( $query->have_posts() ) {
+              $query->the_post();
               $cnt++;
               switch ($cnt) {
                 case '1': // выводим пост 1
                   ?> 
                   <li class="other-item other-item-1">
-                    <!--вывожу фото с дядькой, всегда только он или нет фото-->
                     
-
-                   <img src="<?php 
-                          echo get_template_directory_uri().'/assets/images/suitcase.png'
-                      ?>" alt=""   class="<thumb">
-
-
                     <!--вывожу категорию-->
 
-                    <span class="category-name"><?php $category = get_the_category();
+                    <span class="category-name"><?php $category = get_the_category() ;
                       echo $category[0]->name;?></span>
                     <!--вывожу заголовок-->
                     <h3 class="title"><?php the_title();?></h3>
@@ -620,6 +609,7 @@ wp_reset_postdata(); // Сбрасываем $post
                   <!--/.career-post/ --> 
                   <?php
                 break;
+
                 default:
                 ?>
                 <li class="other-item other-item-default">

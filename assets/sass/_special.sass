@@ -101,11 +101,11 @@
   display: flex
   justify-content: space-between
   align-items: flex-start
-
 .other
   margin: 0
   padding: 0
   list-style: none
+  width: 100%
   //задаем сетку
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
@@ -119,16 +119,13 @@
     overflow: hidden
     &-1
       grid-area: 1 / 1 / 2 / 3
-      background: #B4D1E0
+      //background: #B4D1E0
       padding: 35px
-      .img
-        border: 1px solid red
-        position: absolute
-        width: 100%
-        height: 100%
-        top: 0
-        right: 0
-        object-fit: cover
+      border-radius: 10px
+      overflow: hidden
+      background: #B4D1E0 url(../images/suitcase.png) no-repeat right top / cover
+      height: 100%
+      width: 100%
       .category-name
         color: #6E99AE
         font-size: 12px
