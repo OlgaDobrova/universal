@@ -1,5 +1,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <!--выводим шапку поста-->
+  <!--сначала - изображение поста-->
   <header class="entry-header <?php echo get_post_type();?>-header" style="background: linear-gradient(0deg, rgba(38, 45, 51, 0.75), rgba(38, 45, 51, 0.75)), url(
     <?php
     if ( has_post_thumbnail() ) {
@@ -10,7 +11,9 @@
     } ?> 
   );">
     <div class="container">
-      <?php
+      <div class="post-header-nav">
+        <!--выводим категорию-->
+        <?php
         //цикл пока...есть заведенные категории
         foreach (get_the_category() as $category) {
           printf('<a href="%s" class="category-link %s">%s</a>',
@@ -21,29 +24,59 @@
             esc_html( $category -> name ) //название категории
           );
         }
+        ?>
+        <!--Ссылка на главную страницу-->
+        <a class="home-link" href="<?php echo get_home_url(); ?>">
+         <svg   width="18" height="17" class="icon home-icon">
+            <use xlink:href=" <?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#home"> </use>
+          </svg>
+          На главную
+        </a>
+        <?php
         //выводим ссылки на предыдущий и следующий посты
 			  the_post_navigation(
 			  	array(
 			  		'prev_text' => '<span class="post-nav-prev">
-                <svg   width="15" height="7" class="icon prev-icon">
-                  <use xlink:href="' . get_template_directory_uri().'/assets/images/sprite.svg#left-arrow"></use>
+                <svg width="15" height="7" class="icon prev-icon">
+                  <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#left-arrow"></use>
                 </svg>
             ' . esc_html__( 'Назад', 'universal_theme'   ) . '</span>',
-			  		'next_text' => '<span class="post-nav-next">' . esc_html__( 'Вперед', 'universal_theme'  ) . '</span>' ,
+
+			  		'next_text' => '<span class="post-nav-next"> ' . esc_html__( 'Вперед', 'universal_theme'   ) . '
+                <svg width="15" height="7" class="icon next-icon">
+                  <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#arrow"></use>
+                </svg>
+            </span>',
 			  	)
 			  );
+        ?>
+      </div>
+      <!--/.post-header-nav-->
+        <!--Вставляем флажок - bookmark-->
+        <svg width="30" height="30" class="bookmark">
+          <use xlink:href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#bookmark"></use>
+        </svg>
+
+        <?php
         //если мы на стрнице поста
 		    if ( is_singular() ) :
           //то выводим заголовок в теге h1
-		    	the_title( '<h1 class="entry-title">', '</h1>' );
+		    	the_title( '<h1 class="post-title">', '</h1>' );
 		    else :
           //иначе - заголовок в теге h2 и ссылку на пост
-		    	the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '"    rel="bookmark">', '</a></h2>' );
+		    	the_title( '<h2 class="post-title"><a href="' . esc_url( get_permalink() ) . '"    rel="bookmark">', '</a></h2>' );
 		    endif; ?>
         
+        <!--Вставляем отрывок статьи-->
+        <?php the_excerpt(); ?>
+
         <div class="post-header-info"> <!--подвал каждого поста-->
+            <!--иконка даты-->
+            <svg width="13.5" height="13.5" class="icon date-icon">
+              <use xlink:href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#clock"></use>
+            </svg>
             <!--выводим дату статьи в формате день j,месяц F, год Y, напр. 1 мая 2021-->
-            <span class="post-header-date"><?php the_time('j F');?></span>
+            <span class="post-header-info-date">  <?php the_time('j F'); ?>, <?php the_time('G:i');?></span>
             <!--выводим в блоке инф о комментариях-->
             <div class="comments post-header-comments">
               <!--иконку-->
