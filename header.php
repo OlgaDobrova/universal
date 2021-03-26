@@ -15,9 +15,10 @@
       <?php
         if( has_custom_logo() ){
 	        // логотип есть выводим его
-	        the_custom_logo();
-        } else {
-          echo  bloginfo( 'name' );
+	        echo '<div class="logo">'. get_custom_logo() .
+          '<span class="logo-name">' . get_bloginfo( 'name' ) . '</span></div>';
+        } else { 
+          '<span class="logo-name">' . get_bloginfo( 'name' ) . '</span>';
         }
       ?>
       <?php

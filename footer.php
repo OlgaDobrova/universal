@@ -6,9 +6,17 @@
       <!--/.footer-menu-bar  -->
       <div class="footer-info">
         <?php
+          if( has_custom_logo() ){
+	        // логотип есть выводим его
+	        echo '<div class="logo">'. get_custom_logo() .'</div>';
+          } else { 
+            '<span class="logo-name">' . get_bloginfo( 'name' ) . '</span>';
+          }
+
           wp_nav_menu( [
 	          'theme_location'  => 'footer_menu',
 	          'container'       => 'nav', 
+            'container_class' => 'footer-nav-wrapper', 
 	          'menu_class'      => 'footer-nav', 
 	          'echo'            => true,
           ] );
@@ -30,6 +38,8 @@
       </div>
       <!--/.footer-info-->
       <?php 
+      
+
       if ( ! is_active_sidebar( 'sidebar-footer' ) ) {
       	return;
       }

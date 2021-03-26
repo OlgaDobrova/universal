@@ -2,6 +2,8 @@
   &-header
     padding: 60px 0 72px
     color: #ffffff
+    &-wrapper
+      position: relative
     &-nav
       display: flex
       align-items: center
@@ -43,7 +45,6 @@
     &-info
       display: flex
       align-items: center
-      //justify-content: space-between
       padding: 0px
       max-width: 223px
       font-size: 12px
@@ -69,6 +70,135 @@
   .bookmark
     fill: #fff
     opacity: 0.4
-    position: fixed
-    right: 450px
+    position: absolute
+    right: 0
     margin-top: 70px
+  &-author
+    border: 1px solid #D9DADB
+    position: absolute
+    right: 0
+    //распределение э-тов внутри карточки
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    background-color: #ffffff
+    border-radius: 10px
+    //чтобы ничего не выходило за пределы
+    overflow: hidden
+    min-width: 263px
+    &-info
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      color: #262D33
+      padding: 35px 25px 20px
+      border-bottom: 1px solid #D9DADB
+      width: 100%
+    &-avatar
+      border-radius: 50%
+      width: 90px
+      height: 90px
+      object-fit: cover
+    &-name
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+      font-size: 20px
+      line-height: 25px
+      margin-top: 15px
+      margin-bottom: 5px
+    &-rank
+      font-size: 14px
+      line-height: 20px
+      color: #4B5157
+    &-posts
+      margin-top: 15px
+      font-size: 14px
+      line-height: 20px
+      font-family: 'Lato Black',sans-serif
+    &-link
+      padding: 15px 25px
+      font-size: 14px
+      line-height: 20px
+      font-family: 'Lato Black',sans-serif
+      &:visited
+        color: #262D33
+  &-content
+    // max-width: 623px
+    padding-top: 60px
+    padding-bottom: 30px
+    p
+      font-size: 18px
+      line-height: 30px
+      color: #4B5157
+      margin: 30px 0
+      &:first-child
+        max-width: 623px
+    .has-drop-cap
+      &:not(:focus)
+        &:first-letter
+          color: #4592FF
+          font-family: "Lato Black", sans-serif
+    h1, h2, h3, h4, h5, h6
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+    h1
+      font-size: 30px
+    h2
+      font-size: 25px
+    h3
+      font-size: 22px
+    h4
+      font-size: 18px
+    h5
+      font-size: 16px
+    h6
+      font-size: 14px
+    ul, ol
+      margin-top: 20px
+      padding: 0
+      margin-left: 20px
+      font-size: 18px
+      line-height: 30px
+    blockquote
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+      font-size: 25px
+      line-height: 30px
+      margin-left: 0
+      margin-top: 80px
+      margin-bottom: 45px
+      position: relative
+      &::before
+        position: absolute
+        top: -20px
+        left: -20px
+        content: ''
+        background-image: url(../images/quote.svg)
+        background-repeat: no-repeat
+        background-size: 100%
+        background-position: center
+        width: 70px
+        height: 70px
+        z-index: -1
+      cite
+        font-style: normal
+  .tags-links
+    padding-bottom: 60px
+    border-bottom: 1px solid #D9DADB
+    max-width: 623px
+    width: 100%
+    display: block
+    a
+      text-decoration: none
+      font-size: 14px
+      line-height: 20px
+      padding: 5px 15px
+      color: #262D33
+      border: 1px solid #D9DADB
+      border-radius: 5px
+      margin-right: 10px
