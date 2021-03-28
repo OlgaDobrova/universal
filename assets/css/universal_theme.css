@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Lato Black";
   src: local("Lato-Black"), local("Lato Black"), url("../fonts/Lato-Black.woff") format("woff"), url("../fonts/Lato-Black.woff2") format("woff2");
@@ -1176,6 +1177,65 @@ body {
   border-radius: 5px;
 }
 
+.widget-сollection-wrapper {
+  max-height: 425px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  padding: 60px 25px 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #F5F5F5;
+}
+
+.widget-сollection a {
+  max-width: 23%;
+}
+
+.widget-сollection a img {
+  width: 263px;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.widget-сollection a h4 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  color: #262D33;
+}
+
+.widget-сollection .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.widget-сollection .info .icon {
+  fill: #BCBFC2;
+  margin-right: 5px;
+}
+
+.widget-сollection .info .counter {
+  font-size: 12px;
+  line-height: 15px;
+  color: #939699;
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 1200px) {
   .sidebar-front-page {
     width: 30%;
@@ -1997,7 +2057,6 @@ body {
 
 .post-content {
   padding-top: 60px;
-  padding-bottom: 30px;
 }
 
 .post-content p {
@@ -2084,15 +2143,16 @@ body {
   font-style: normal;
 }
 
-.post .tags-links {
+.post-content .tags-links {
+  margin-top: 45px;
   padding-bottom: 60px;
   border-bottom: 1px solid #D9DADB;
-  max-width: 623px;
   width: 100%;
+  max-width: 623px;
   display: block;
 }
 
-.post .tags-links a {
+.post-content .tags-links a {
   text-decoration: none;
   font-size: 14px;
   line-height: 20px;
@@ -2101,4 +2161,20 @@ body {
   border: 1px solid #D9DADB;
   border-radius: 5px;
   margin-right: 10px;
+}
+
+.post .meks_ess {
+  margin-top: 0;
+  max-width: 623px;
+}
+
+.post .meks_ess_share_label {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  padding: 0;
 }

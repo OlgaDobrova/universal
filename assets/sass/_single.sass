@@ -1,5 +1,5 @@
 .post
-  &-header
+  &-header  //шапка поста - картинка, заголовок, отрывок, даты, автор
     padding: 60px 0 72px
     color: #ffffff
     &-wrapper
@@ -125,10 +125,10 @@
       font-family: 'Lato Black',sans-serif
       &:visited
         color: #262D33
-  &-content
+  &-content   //Содержимое поста
     // max-width: 623px
     padding-top: 60px
-    padding-bottom: 30px
+    //padding-bottom: 30px
     p
       font-size: 18px
       line-height: 30px
@@ -138,6 +138,7 @@
         max-width: 623px
     .has-drop-cap
       &:not(:focus)
+        //псевдокласс :first-child находит любой элемент, являющийся первым в своём родителе
         &:first-letter
           color: #4592FF
           font-family: "Lato Black", sans-serif
@@ -187,18 +188,37 @@
         z-index: -1
       cite
         font-style: normal
-  .tags-links
-    padding-bottom: 60px
-    border-bottom: 1px solid #D9DADB
+    .tags-links
+      //border: 1px solid green
+      margin-top: 45px
+      padding-bottom: 60px
+      border-bottom: 1px solid #D9DADB
+      width: 100%
+      max-width: 623px
+      display: block
+      //чтобы ничего не выходило за пределы
+      //overflow: hidden
+      a
+        text-decoration: none
+        font-size: 14px
+        line-height: 20px
+        padding: 5px 15px
+        color: #262D33
+        border: 1px solid #D9DADB
+        border-radius: 5px
+        margin-right: 10px
+  &-foother
+  .meks_ess
+    margin-top: 0
+    //border: 1px solid blue
     max-width: 623px
-    width: 100%
-    display: block
-    a
-      text-decoration: none
-      font-size: 14px
-      line-height: 20px
-      padding: 5px 15px
-      color: #262D33
-      border: 1px solid #D9DADB
-      border-radius: 5px
-      margin-right: 10px
+    &_share_label
+      //border: 1px solid red
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+      font-size: 25px
+      line-height: 30px
+      margin-top: 30px
+      margin-bottom: 25px
+      padding: 0

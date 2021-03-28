@@ -75,7 +75,7 @@
         <!--Вставляем отрывок статьи-->
         <?php the_excerpt(); ?>
 
-        <div class="post-header-info"> <!--подвал каждого поста-->
+        <div class="post-header-info"> <!--подвал шапки каждого поста-->
             <!--иконка даты-->
             <svg width="13.5" height="13.5" class="icon date-icon">
               <use xlink:href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.svg#clock"></use>
@@ -156,6 +156,13 @@
 	      		'after'  => '</div>',
 	      	)
 	      );
+
+        //вывод тегов поста
+        $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator',   'universal_theme' ) );
+	  		if ( $tags_list ) {
+	  			/* translators: 1: list of tags. */
+	  			printf( '<span class="tags-links">' . esc_html__( '%1$s', 'universal_theme' ) . '</ span>', $tags_list ); 
+	  		}
 	    ?>
 	  </div>
     <!-- /.Содержимое поста -->
@@ -163,13 +170,14 @@
 	  <!--Подвал поста-->
     <footer class="post-footer">
       <?php
-        $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator',   'universal_theme' ) );
-	  		if ( $tags_list ) {
-	  			/* translators: 1: list of tags. */
-	  			printf( '<span class="tags-links">' . esc_html__( '%1$s', 'universal_theme' ) . '</ span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	  		}
+        //вывод шеринговых кнопок - Поделиться в соцсетях
+        meks_ess_share(); 
+      
+        //<!--/.Подключаем сайдбар доп.постов/ --> 
+        get_sidebar('post');
       ?>
     </footer>
+    
   </div>
   <!--/.container-->
 </article>
