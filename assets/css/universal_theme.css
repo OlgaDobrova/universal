@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "Lato Black";
   src: local("Lato-Black"), local("Lato Black"), url("../fonts/Lato-Black.woff") format("woff"), url("../fonts/Lato-Black.woff2") format("woff2");
@@ -1177,7 +1176,7 @@ body {
   border-radius: 5px;
 }
 
-.widget-сollection-wrapper {
+aside#secondary {
   max-height: 425px;
   margin-top: 60px;
   margin-bottom: 30px;
@@ -1194,17 +1193,17 @@ body {
   background: #F5F5F5;
 }
 
-.widget-сollection a {
+aside#secondary a {
   max-width: 23%;
 }
 
-.widget-сollection a img {
+aside#secondary a img {
   width: 263px;
   height: 180px;
   border-radius: 10px;
 }
 
-.widget-сollection a h4 {
+aside#secondary a img h4 {
   margin-top: 15px;
   margin-bottom: 15px;
   font-family: Roboto Slab;
@@ -1215,7 +1214,7 @@ body {
   color: #262D33;
 }
 
-.widget-сollection .info {
+aside#secondary a .info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1224,12 +1223,12 @@ body {
           align-items: center;
 }
 
-.widget-сollection .info .icon {
+aside#secondary a .info .icon {
   fill: #BCBFC2;
   margin-right: 5px;
 }
 
-.widget-сollection .info .counter {
+aside#secondary a .info .counter {
   font-size: 12px;
   line-height: 15px;
   color: #939699;
