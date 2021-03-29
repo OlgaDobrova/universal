@@ -1177,6 +1177,7 @@ body {
 }
 
 aside#secondary {
+  border: 1px solid red;
   max-height: 425px;
   margin-top: 60px;
   margin-bottom: 30px;

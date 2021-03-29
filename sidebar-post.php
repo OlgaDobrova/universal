@@ -19,8 +19,8 @@
 				//выводим 4 поста
 				'posts_per_page' => 4,
 				//посты, которые входят в одну из указанных категорий
-				
-				'category__in' => array($current_cat_id = $category[0]->cat_ID),
+//$current_cat_id = $category[0]->
+				'category__in' => array('cat_ID'),
 				'post__not_in' => array($post->ID),
 			] );
 			
