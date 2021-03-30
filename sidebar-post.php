@@ -13,13 +13,12 @@
 	<div class="collection sidebar-collection">
 		<?php
 			global $post;
-
+			$category=get_the_category();
 			$query = new WP_Query( [
 				//выводим 4 поста
 				'posts_per_page' => 4,
 				//посты, которые входят в одну из указанных категорий
-//$current_cat_id = $category[0]->
-				//'category__in' => array($post->cat_ID),
+				'category__in' => array($current_cat_id = $category[0]->cat_ID),
 				'post__not_in' => array($post->ID),
 			] );
 			
