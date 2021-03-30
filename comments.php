@@ -125,7 +125,7 @@ if ( post_password_required() ) {
 	  		  <?php	echo 'Комментарии ' . 
             '<span class="comments-count">'.get_comments_number().'</span>';?>
 	  	  </h2><!-- /.comments-title -->
-        <a href="#" class="comments-add-button">
+        <a href="#comment" class="comments-add-button">
           <!--иконку-->
           <svg   widh="18" height="18" class="icon comments-add-icon">
             <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#pencil"></use>
