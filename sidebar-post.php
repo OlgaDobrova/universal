@@ -9,9 +9,8 @@
 
 ?>
 
-<!--вся инфа в пределах контейнера-->
-<div class="container">
-	<aside id="secondary" class="sidebar-сollection">
+
+	<div class="collection sidebar-collection">
 		<?php
 			global $post;
 
@@ -20,7 +19,7 @@
 				'posts_per_page' => 4,
 				//посты, которые входят в одну из указанных категорий
 //$current_cat_id = $category[0]->
-				'category__in' => array('cat_ID'),
+				//'category__in' => array($post->cat_ID),
 				'post__not_in' => array($post->ID),
 			] );
 			
@@ -28,8 +27,8 @@
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					?>
-					<a href="<?php the_permalink()?>" class="сollection-link">
-	  			  <img class="сollection-thumb" src="<?php 
+					<a href="<?php the_permalink()?>" class="collection-link">
+	  			  <img class="collection-thumb" src="<?php 
 	  			    if ( has_post_thumbnail() ) {
 	  			      echo get_the_post_thumbnail_url();
 	  			    }
@@ -40,7 +39,7 @@
 
 	  			  <h4><?php echo mb_strimwidth(get_the_title(),0,70,'...') ; ?></h4>
 						
-	  			  <div class="info сollection-info">
+	  			  <div class="info collection-info">
 	  			    <!--выводим в блоке инф о просмотрах-->
 	  			    <div class="viewing post-viewing">
 	  			      <!--иконку для просмотров-->
@@ -73,6 +72,5 @@
 
 			wp_reset_postdata(); // Сбрасываем $post
 		?>
-	</aside><!-- #secondary -->
-</div>
-<!--/.container-->
+	</div><!-- #secondary -->
+

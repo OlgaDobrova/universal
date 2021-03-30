@@ -11,7 +11,7 @@
 			get_template_part( 'template-parts/content', get_post_type() );
 
       //Подключаем сайдбар доп.постов
-      get_sidebar('post');
+      //get_sidebar('post');
 
 			// Если комментарии к записи открыты, выводим эти комментарии
 			if ( comments_open() || get_comments_number() ) :

@@ -1,0 +1,149 @@
+.comments
+  &-area
+    //border: 1px solid red
+    max-width: 750px
+  &-header
+    //border: 1px solid red
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &-title
+    //border: 1px solid blue
+    font-family: Roboto Slab
+    font-size: 40px
+    line-height: 50px
+    color: #262D33
+  &-count
+    //border: 1px solid green
+    font-family: Lato Regular
+    font-style: normal
+    font-weight: normal
+    font-size: 40px
+    line-height: 50px
+    color: #939699
+  &-add
+    &-button
+      border: 1px solid #D9DADB
+      border-radius: 20px
+      padding: 10px 20px
+      color: #262D33
+      font-size: 14px
+      line-height: 20px
+      display: flex
+      align-items: center
+      &:visited
+        color: #262D33
+    &-icon
+      fill: #BCBFC2
+      margin-right: 10px
+  &-list
+    margin-left: 0
+    padding: 0
+    //скрываем нумерацию списка
+    list-style: none
+.comment
+  //border: 1px solid green
+  &-content
+    p
+      font-family: Lato
+      font-style: normal
+      font-weight: normal
+      font-size: 18px
+      line-height: 30px
+      color: #4B5157
+      margin-top: 10px
+      margin-bottom: 15px
+  a
+    text-decoration: none
+  &-body
+    padding-top: 20px
+    padding-bottom: 29px
+    border-top: 1px solid #D9DADB
+    display: flex
+    align-items: flex-start
+  &-author
+    &-name
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+      font-size: 16px
+      line-height: 25px
+      margin-right: 10px
+      a
+        color: #262D33
+        &:visited
+          color: #262D33
+    &-avatar
+      margin-right: 15px
+      //задаем нетерпимость к сжатию, т.е. аватарка не уменьшится при увеличении блока с текстом комментария
+      flex-shrink: 0
+      img
+        border-radius: 50%
+  &-meta
+    font-size: 12px
+    line-height: 15px
+    font-family: Lato
+    font-style: normal
+    font-weight: normal
+    a
+      color: #939699
+      &:visited
+        color: #939699
+  &-reply
+    display: flex
+    align-items: center
+    &-link
+      font-size: 12px
+      line-height: 15px
+      color: #262D33
+      &:visited
+        color: #262D33
+  //форма для ответа
+  &-form
+    background-color: #F5F5F5
+    border-radius: 10px
+    padding: 30px 40px 35px 30px
+    .avatar
+      border-radius: 50%
+      margin-right: 20px
+  &-label
+    //border: 1px solid green
+    font-family: Roboto Slab
+    font-size: 20px
+    line-height: 25px
+    color: #262D33
+    margin-bottom: 15px
+    margin-left: 95px
+    display: block
+  //окно ввода комментария - прямоугольник
+  &-textarea
+    min-height: 130px
+    max-width: 595px
+    //запрет изменения размеров окна
+    resize: none
+    background: #FFFFFF
+    border: 1px solid #D9DADB
+    border-radius: 10px
+    &-wrapper
+      position: relative
+      width: 100%
+      //пишем скобку слева от окна ввода коммента с помощью псевдоэлемента
+      &::before
+        content: ''
+        //картинку (носик) вставляем как фоновую
+        background-image: url(../images/angle.svg)
+        //фон не повторяется
+        background-repeat: no-repeat
+        background-position: center center
+        background-size: 100%
+        width: 12px
+        height: 20px
+        position: absolute
+        left: -10px
+        top: 30px
+  &-wrapper
+    display: flex
+    align-items: flex-start
+  &-submit
+    margin-left: 95px
+    margin-top: 15px
