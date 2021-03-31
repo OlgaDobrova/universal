@@ -1,0 +1,37 @@
+.pagination
+  //border: 1px solid blue
+  margin-top: 40px
+  .nav-links
+    //border: 1px solid red
+    background-color: #ffffff
+    //padding: 17px 83px 18px 78px
+    border-radius: 10px
+    display: flex
+    align-items: center
+    justify-content: center
+    //для всех эл-тов
+    *
+      padding: 17px
+      font-size: 14px
+      line-height: 20px
+      color: #262D33
+      text-decoration: none
+      font-family: "Lato Black", sans-serif
+      text-align: center
+      &:not(:last-child)
+        border-right: 1px solid #D9DADB
+        //border-left: 1px solid #D9DADB
+    .next
+      padding: 17px 70px
+      margin-left: auto
+      flex-grow: 1
+      display: flex
+      align-items: center
+    .prev
+      padding: 17px 70px
+      margin-right: auto
+      flex-grow: 1
+      display: flex
+      align-items: center
+      &-icon
+        fill: #BCBFC2
