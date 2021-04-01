@@ -256,7 +256,7 @@
                       
                       <!--создаем еще блок для автора и даты и комментариев и лайков-->
                       <div class="author-info">
-                        <span class="autor-name"><strong><?php the_author();?></strong></span>
+                        <span class="author-name"><strong><?php the_author();?></strong></span>
                         <!--выводим дату статьи в формате день j,месяц F, год Y, напр. 1  мая2021-->
                         <span class="date"><?php the_time('j F');?></span>
                         <!--выводим в блоке инф о комментариях-->

@@ -1,0 +1,70 @@
+.category
+  &-title
+    //border: 1px solid red
+    font-family: Roboto Slab
+    font-style: normal
+    font-weight: bold
+    font-size: 40px
+    line-height: 50px
+    color: #262D33
+.post
+  &-list
+    //border: 1px solid blue
+    display: flex
+    flex-wrap: wrap
+  &-card
+    //border: 1px solid green
+    max-width: 23%
+    margin-bottom: 30px
+    border-radius: 10px
+    background-color: #ffffff
+    //скругления у всех углов 1го поста - ничего за пределы карточки!
+    overflow: hidden
+    //&::nth-child( 4n ) //кроме каждого 4го поста
+    margin-right: 2%
+    &-thumb
+      //border: 1px solid red
+      width: 100%
+      height: 180px
+    &-text
+      padding: 15px 25px 30px
+    &-title
+      font-family: Roboto Slab
+      font-style: normal
+      font-weight: bold
+      font-size: 16px
+      line-height: 25px
+      color: #262D33
+      margin-bottom: 5px
+      margin-top: 0
+    &-excerpt
+      font-size: 14px
+      line-height: 20px
+      color: #4B5157
+      margin-bottom: 14px
+      margin-top: 0
+    .author
+      //border: 1px solid red
+      display: flex
+      align-items: center
+      &-avatar
+        border-radius: 50%
+        width: 45px
+        height: 45px
+        margin-right: 10px
+      &-info
+        //border: 1px solid blue
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+        color: #939699
+        font-size: 12px
+        line-height: 15px
+      &-name
+        width: 100%
+        font-size: 14px
+        line-height: 20px
+        color: #4B5157
+      .icon
+        fill: #939699
+        margin-left: 10px

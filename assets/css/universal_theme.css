@@ -2465,6 +2465,7 @@ body {
 
 .pagination {
   margin-top: 40px;
+  margin-bottom: 70px;
 }
 
 .pagination .nav-links {
@@ -2525,4 +2526,100 @@ body {
 
 .pagination .nav-links .prev-icon {
   fill: #BCBFC2;
+}
+
+.category-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  color: #262D33;
+}
+
+.post-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.post-card {
+  max-width: 23%;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  overflow: hidden;
+  margin-right: 2%;
+}
+
+.post-card-thumb {
+  width: 100%;
+  height: 180px;
+}
+
+.post-card-text {
+  padding: 15px 25px 30px;
+}
+
+.post-card-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  color: #262D33;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.post-card-excerpt {
+  font-size: 14px;
+  line-height: 20px;
+  color: #4B5157;
+  margin-bottom: 14px;
+  margin-top: 0;
+}
+
+.post-card .author {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-card .author-avatar {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+}
+
+.post-card .author-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #939699;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.post-card .author-name {
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4B5157;
+}
+
+.post-card .author .icon {
+  fill: #939699;
+  margin-left: 10px;
 }
