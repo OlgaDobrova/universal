@@ -2641,7 +2641,10 @@ body {
   margin-bottom: 27px;
 }
 
-.page-text {
+.contacts-title {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
   font-size: 18px;
   line-height: 30px;
   margin-bottom: 28px;
@@ -2654,6 +2657,30 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+}
+
+.contacts-wrapper .left {
+  margin-right: 80px;
+}
+
+.contacts-wrapper .right {
+  max-width: 263px;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.contacts-wrapper .right a, .contacts-wrapper .right adress {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 15px;
+  display: block;
 }
 
 .contacts-form {

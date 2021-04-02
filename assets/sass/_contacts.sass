@@ -12,14 +12,32 @@
     font-size: 40px
     line-height: 50px
     margin-bottom: 27px
-  &-text
+
+.contacts
+  &-title
+    font-family: Lato
+    font-style: normal
+    font-weight: bold
     font-size: 18px
     line-height: 30px
     margin-bottom: 28px
-.contacts
   &-wrapper
     display: flex
     align-items: start
+    .left
+      margin-right: 80px
+    .right
+      max-width: 263px
+      text-decoration: none
+      font-size: 14px
+      line-height: 20px
+      display: flex
+      //все записи в карточке - по вертикали
+      flex-direction: column
+      a, adress
+        color: rgba(#fff,0.85)
+        margin-bottom: 15px
+        display: block
   &-form
     max-width: 460px
     margin-bottom: 30px
