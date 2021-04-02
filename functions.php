@@ -534,6 +534,46 @@ function enqueue_universal_style() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
+## ИЩЕМ МЕСТО, где на хостинге лежит папка WP-ADMIN (в ней admin-ajax.php, нужен к нему доступ)
+//    к какому событию цепляемся, называем ф-цию для исполнения, одномерный/двумерный массив
+add_action( 'wp_enqueue_scripts', 'adminAjax_data', 99 );
+//объявляем ф-цию
+function adminAjax_data(){
+	//цепляемся к событию - jquery , те название скрипта, перед которым будут добавлены данные
+	//adminAjax - это название Javascript объекта, который будет содержать данные
+	wp_localize_script( 'jquery', 'adminAjax', 
+		//с помощью wp_localize_script создается массив с данными о месте, где на хостинге находится папка wp-admin
+		array( 
+		'url' => admin_url('admin-ajax.php') 
+		)
+	);
+}
+
+##Обработчик формы обратной связи
+add_action( 'wp_ajax_contacts_form', 'ajax_form' );
+add_action( 'wp_ajax_nopriv_contacts_form', 'ajax_form' );
+function ajax_form() {
+	$contact_name = $_POST['contact_name'];
+	$contact_email = $_POST['contact_email'];
+	$contact_comment = $_POST['contact_comment'];
+
+	$message = 'Уважаемый(ая), '.$contact_name.'! Вы оставили вопрос на сайте Universall: "'.			$contact_comment.'". Ваш Email: "'.$contact_email.'" Ваше сообщение успешно передано на обработку.';
+	//от кого письмо
+	$headers = 'From: Ольга Доброва <dobrova_o_g@mail.ru>' . "\r\n";
+
+					//кому письмо, Тема, Содержание
+	$sent_message = wp_mail($contact_email, 'Новая заявка с сайта', $message, $headers);
+
+	if ($sent_message) {
+		echo 'Отправка свершилась!';
+	} else {
+		echo 'Что-то сломалось :(';
+	}
+
+	// выход нужен для того, чтобы в ответе не было ничего лишнего, только то что возвращает функция
+	wp_die();
+}
+
 //изменяем настройки для облака тегов
 //        к какому событию цепляемся,   называем ф-цию для исполнения
 add_filter('widget_tag_cloud_args','edit_widget_tag_cloud_args');
