@@ -2683,6 +2683,11 @@ body {
   display: block;
 }
 
+.contacts-wrapper .right-email {
+  border: 1px solid blue;
+  margin-bottom: 15px;
+}
+
 .contacts-form {
   max-width: 460px;
   margin-bottom: 30px;

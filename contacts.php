@@ -24,7 +24,7 @@ get_header(); ?>
       <div class="right">
         <p class="contacts-title">Или по этим контактам</p>
         <?php 
-          //проверяем наличие заполненного доп.поля Email
+         /* //проверяем наличие заполненного доп.поля Email
           $email = get_post_meta( get_the_ID(), 'email', true );
           if ($email) {
             echo '<a href="mailto: '.$email.'" class="">'.$email.'</a>';
@@ -38,9 +38,24 @@ get_header(); ?>
           $phone = get_post_meta( get_the_ID(), 'phone', true );
           if ($phone) {
             echo '<a href="tel: '.$phone.'" class="">'.$phone.'</a>';
-          }
+          }*/
           
-          the_field('date');
+          //проверяем наличие заполненного доп.поля Email
+          $email = the_field('email');
+          if ($email) {
+              echo '<a href="mailto: '.$email.'" class="">'.$email.'</a>';
+          }
+          //проверяем наличие заполненного доп.поля Адрес
+          $adress = the_field('address');
+          if ($adress) {
+            echo '<adress class="">'.$adress.'</adress>';
+          }
+          //проверяем наличие заполненного доп.поля Тел.
+          $phone = the_field('phone');
+          if ($phone) {
+            echo '<a href="tel: '.$phone.'" class="">'.$phone.'</a>';
+          }
+          //the_field('date');
         ?>
       </div><!--right-->
     </div><!--/.contacts-wrapper-->
