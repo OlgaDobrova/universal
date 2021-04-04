@@ -1695,6 +1695,10 @@ body {
   border-top: 3px solid #6E99AE;
 }
 
+.footer-menu:nth-child(7) {
+  border-top: 3px solid #FBE418;
+}
+
 .footer-menu-bar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2681,11 +2685,6 @@ body {
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: 15px;
   display: block;
-}
-
-.contacts-wrapper .right-email {
-  border: 1px solid blue;
-  margin-bottom: 15px;
 }
 
 .contacts-form {

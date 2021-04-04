@@ -69,6 +69,59 @@ function register_post_types(){
 	] );
 }
 
+// хук, через который подключается функция
+// регистрирующая новые таксономии (create_lesson_taxonomies)
+add_action( 'init', 'create_lesson_taxonomies' );
+
+// функция, создающая 2 новые таксономии "genres" (жанр) и "Theacher"(учитель) для постов типа "lesson"
+function create_lesson_taxonomies(){
+
+	// Добавляем древовидную таксономию 'genre' (как категории)
+	register_taxonomy('genre', array('lesson'), array(
+		'hierarchical'  => true, //признак иерархической структуры
+		'labels'        => array(  //как именно склонять слово Жанр в разных случаях
+			'name'              => _x( 'Genres', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Genre', 'taxonomy singular name' ),
+			'search_items'      =>  __( 'Search Genres' ),
+			'all_items'         => __( 'All Genres' ),
+			'parent_item'       => __( 'Parent Genre' ),
+			'parent_item_colon' => __( 'Parent Genre:' ),
+			'edit_item'         => __( 'Edit Genre' ),
+			'update_item'       => __( 'Update Genre' ),
+			'add_new_item'      => __( 'Add New Genre' ),
+			'new_item_name'     => __( 'New Genre Name' ),
+			'menu_name'         => __( 'Genre' ),
+		),
+		'show_ui'       => true, //показать в меню
+		'query_var'     => true,
+		'rewrite'       => array( 'slug' => 'the_genre' ), // свой слаг в URL
+	));
+
+	// Добавляем НЕ древовидную таксономию 'theacher' (как метки)
+	register_taxonomy('theacher', 'lesson',array(
+		'hierarchical'  => false,
+		'labels'        => array(
+			'name'                        => _x( 'Theacher', 'taxonomy general name' ),
+			'singular_name'               => _x( 'Theacher', 'taxonomy singular name' ),
+			'search_items'                =>  __( 'Search Theacher' ),
+			'popular_items'               => __( 'Popular Theacher' ),
+			'all_items'                   => __( 'All Theachers' ),
+			'parent_item'                 => null,
+			'parent_item_colon'           => null,
+			'edit_item'                   => __( 'Edit Theacher' ),
+			'update_item'                 => __( 'Update Theacher' ),
+			'add_new_item'                => __( 'Add New Theacher' ),
+			'new_item_name'               => __( 'New Theacher Name' ),
+			'separate_items_with_commas'  => __( 'Separate theachers with commas' ),
+			'add_or_remove_items'         => __( 'Add or remove theachers' ),
+			'choose_from_most_used'       => __( 'Choose from the most used theachers' ),
+			'menu_name'                   => __( 'Theachers' ),
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		'rewrite'       => array( 'slug' => 'the_theacher' ), // свой слаг в URL
+	));
+}
 
 /**
  * Регистрация области виджета (подключение сайдбара).
