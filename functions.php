@@ -3,6 +3,23 @@
 if ( ! function_exists( 'universal_theme_setup' ) ) :
   // то создадим ф-цию добавления 
     function universal_theme_setup() {
+
+			// Удаляем роль при деактивации нашей темы
+			add_action( 'switch_theme', 'deactivate_universal_theme' );
+			function deactivate_universal_theme() {
+				remove_role( 'developer' );
+			}
+
+			// Добавляем роль при активации нашей темы
+			add_action( 'after_switch_theme', 'activate_universal_theme' );
+			function activate_universal_theme() {
+				// Получим объект данных роли "Автор"
+				$author = get_role( 'author' );
+				add_role( 'developer', 'Разработчик', $author->capabilities );
+				add_role( 'admin', 'Фотограф', $author->capabilities );
+				add_role( 'User', 'Фрилансер', $author->capabilities );
+			}
+
       //добавление заголовка сайта
       add_theme_support( 'title-tag' );
       //Добавление миниатюр
@@ -26,7 +43,7 @@ endif;
 
 add_action( 'after_setup_theme', 'universal_theme_setup' );
 
-## Шаблон для создания нового типа записи видуоурок
+## Шаблон для создания нового типа записи видеоурок
 add_action( 'init', 'register_post_types' );
 function register_post_types(){
 	register_post_type( 'lesson', [
@@ -59,7 +76,7 @@ function register_post_types(){
 		'menu_icon'           => 'dashicons-welcome-learn-more', //это иконка - студ.шапка
 		'capability_type'   => 'post',
 		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
-		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+		'map_meta_cap'      => true, // Ставим true чтобы включить дефолтный обработчик специальных прав
 		'hierarchical'        => false,//неиерархический тип записи
 		'supports'            => [ 'title', 'editor','thumbnail','custom-fields' ], // 'title','editor','author','excerpt','trackbacks','comments','revisions','page-attributes','post-formats'
 		'taxonomies'          => [],
@@ -672,7 +689,8 @@ function ajax_form() {
 	wp_die();
 }
 
-//изменяем настройки для облака тегов
+
+##изменяем настройки для облака тегов
 //        к какому событию цепляемся,   называем ф-цию для исполнения
 add_filter('widget_tag_cloud_args','edit_widget_tag_cloud_args');
 //объявляем ф-цию
@@ -706,8 +724,236 @@ add_filter( 'excerpt_more', function($more) {
 	return '...';
 });
 
+
 //ф-ция склонения слов полсе числительных
 function plural_form($number, $after) {
 	$cases = array (2, 0, 1, 1, 1, 2);
 	echo $number.' '.$after[ ($number%100>4 && $number%100<20)? 2: $cases[min($number%10, 5)] ];
 }
+
+/*
+ * "Хлебные крошки" для WordPress
+ * автор: Dimox
+ * версия: 2019.03.03
+ * лицензия: MIT
+*/
+function the_breadcrumbs() {
+
+	/* === ОПЦИИ === */
+	$text['home']     = 'Главная'; // текст ссылки "Главная"
+	$text['category'] = '%s'; // текст для страницы рубрики
+	$text['search']   = 'Результаты поиска по запросу "%s"'; // текст для страницы с результатами поиска
+	$text['tag']      = 'Записи с тегом "%s"'; // текст для страницы тега
+	$text['author']   = 'Статьи автора %s'; // текст для страницы автора
+	$text['404']      = 'Ошибка 404'; // текст для страницы 404
+	$text['page']     = 'Страница %s'; // текст 'Страница N'
+	$text['cpage']    = 'Страница комментариев %s'; // текст 'Страница комментариев N'
+
+	$wrap_before    = '<div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">'; // открывающий тег обертки
+	$wrap_after     = '</div><!-- .breadcrumbs -->'; // закрывающий тег обертки
+	$sep            = '<span class="breadcrumbs__separator"> › </span>'; // разделитель между "крошками"
+	$before         = '<span class="breadcrumbs__current">'; // тег перед текущей "крошкой"
+	$after          = '</span>'; // тег после текущей "крошки"
+
+	$show_on_home   = 0; // 1 - показывать "хлебные крошки" на главной странице, 0 - не показывать
+	$show_home_link = 1; // 1 - показывать ссылку "Главная", 0 - не показывать
+	$show_current   = 1; // 1 - показывать название текущей страницы, 0 - не показывать
+	$show_last_sep  = 1; // 1 - показывать последний разделитель, когда название текущей страницы не отображается, 0 - не показывать
+	/* === КОНЕЦ ОПЦИЙ === */
+
+	global $post;
+	$home_url       = home_url('/');
+	$link           = '<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
+	$link          .= '<a class="breadcrumbs__link" href="%1$s" itemprop="item"><span itemprop="name">%2$s</span></a>';
+	$link          .= '<meta itemprop="position" content="%3$s" />';
+	$link          .= '</span>';
+	$parent_id      = ( $post ) ? $post->post_parent : '';
+	$home_link      = sprintf( $link, $home_url, $text['home'], 1 );
+
+	if ( is_home() || is_front_page() ) {
+
+		if ( $show_on_home ) echo $wrap_before . $home_link . $wrap_after;
+
+	} else {
+
+		$position = 0;
+
+		echo $wrap_before;
+
+		if ( $show_home_link ) {
+			$position += 1;
+			echo $home_link;
+		}
+
+		//если мы на странице категорий
+		if ( is_category() ) { echo $sep.'Категории';
+			//get_ancestors() - Возвращает массив идентификаторов (ID) родительских элементов, где последняя ячейка массива будет содержать ID самого верхнего элемента цепочки. 
+															//это ID выбранной категории, тип - категории
+			$parents = get_ancestors( get_query_var('cat'), 'category' );
+			//перебираем массив ID категорий, начиная с ID самого верхнего уровня
+			foreach ( array_reverse( $parents ) as $cat ) {
+				$position += 1;
+				//если это еще не последний эл-т, то выводим разделитель (м/д "крошками")
+				if ( $position > 1 ) echo $sep;
+				//потом ставим имя категории с корректной на него ссылкой
+				echo sprintf( $link, get_category_link( $cat ), get_cat_name( $cat ), $position );
+			} //конец цикла
+
+			if ( get_query_var( 'paged' ) ) { 
+				$position += 1;
+				$cat = get_query_var('cat');
+				echo $sep . sprintf($link, get_category_link( $cat ), get_cat_name( $cat ), $position );
+				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
+			} else {
+				//если мы на текущей стр
+				if ( $show_current ) { 
+					if ( $position >= 1 ) echo $sep;
+					echo $before . sprintf($text['category'], single_cat_title( '', false ) ) . $after;
+				} elseif ( $show_last_sep ) echo $sep;
+			}
+
+			//если мы на стр поиска
+		} elseif ( is_search() ) {
+			if ( get_query_var( 'paged' ) ) {
+				$position += 1;
+				if ( $show_home_link ) echo $sep;
+				echo sprintf( $link, $home_url . '?s=' . get_search_query(), sprintf( $text['search'], get_search_query() ), $position );
+				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
+			} else {
+				if ( $show_current ) {
+					if ( $position >= 1 ) echo $sep;
+					echo $before . sprintf( $text['search'], get_search_query() ) . $after;
+				} elseif ( $show_last_sep ) echo $sep;
+			}
+
+		} elseif ( is_year() ) {
+			if ( $show_home_link && $show_current ) echo $sep;
+			if ( $show_current ) echo $before . get_the_time('Y') . $after;
+			elseif ( $show_home_link && $show_last_sep ) echo $sep;
+
+		} elseif ( is_month() ) {
+			if ( $show_home_link ) echo $sep;
+			$position += 1;
+			echo sprintf( $link, get_year_link( get_the_time('Y') ), get_the_time('Y'), $position );
+			if ( $show_current ) echo $sep . $before . get_the_time('F') . $after;
+			elseif ( $show_last_sep ) echo $sep;
+
+		} elseif ( is_day() ) {
+			if ( $show_home_link ) echo $sep;
+			$position += 1;
+			echo sprintf( $link, get_year_link( get_the_time('Y') ), get_the_time('Y'), $position ) . $sep;
+			$position += 1;
+			echo sprintf( $link, get_month_link( get_the_time('Y'), get_the_time('m') ), get_the_time('F'), $position );
+			if ( $show_current ) echo $sep . $before . get_the_time('d') . $after;
+			elseif ( $show_last_sep ) echo $sep;
+
+		} elseif ( is_single() && ! is_attachment() ) {
+			if ( get_post_type() != 'post' ) {
+				$position += 1;
+				$post_type = get_post_type_object( get_post_type() );
+				if ( $position > 1 ) echo $sep;
+				echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->labels->name, $position );
+				if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+				elseif ( $show_last_sep ) echo $sep;
+			} else {
+				$cat = get_the_category(); $catID = $cat[0]->cat_ID;
+				$parents = get_ancestors( $catID, 'category' );
+				$parents = array_reverse( $parents );
+				$parents[] = $catID;
+				foreach ( $parents as $cat ) {
+					$position += 1;
+					if ( $position > 1 ) echo $sep;
+					echo sprintf( $link, get_category_link( $cat ), get_cat_name( $cat ), $position );
+				}
+				if ( get_query_var( 'cpage' ) ) {
+					$position += 1;
+					echo $sep . sprintf( $link, get_permalink(), get_the_title(), $position );
+					echo $sep . $before . sprintf( $text['cpage'], get_query_var( 'cpage' ) ) . $after;
+				} else {
+					if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+					elseif ( $show_last_sep ) echo $sep;
+				}
+			}
+
+		} elseif ( is_post_type_archive() ) {
+			$post_type = get_post_type_object( get_post_type() );
+			if ( get_query_var( 'paged' ) ) {
+				$position += 1;
+				if ( $position > 1 ) echo $sep;
+				echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->label, $position );
+				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
+			} else {
+				if ( $show_home_link && $show_current ) echo $sep;
+				if ( $show_current ) echo $before . $post_type->label . $after;
+				elseif ( $show_home_link && $show_last_sep ) echo $sep;
+			}
+
+		} elseif ( is_attachment() ) {
+			$parent = get_post( $parent_id );
+			$cat = get_the_category( $parent->ID ); $catID = $cat[0]->cat_ID;
+			$parents = get_ancestors( $catID, 'category' );
+			$parents = array_reverse( $parents );
+			$parents[] = $catID;
+			foreach ( $parents as $cat ) {
+				$position += 1;
+				if ( $position > 1 ) echo $sep;
+				echo sprintf( $link, get_category_link( $cat ), get_cat_name( $cat ), $position );
+			}
+			$position += 1;
+			echo $sep . sprintf( $link, get_permalink( $parent ), $parent->post_title, $position );
+			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			elseif ( $show_last_sep ) echo $sep;
+
+		} elseif ( is_page() && ! $parent_id ) {
+			if ( $show_home_link && $show_current ) echo $sep;
+			if ( $show_current ) echo $before . get_the_title() . $after;
+			elseif ( $show_home_link && $show_last_sep ) echo $sep;
+
+		} elseif ( is_page() && $parent_id ) {
+			$parents = get_post_ancestors( get_the_ID() );
+			foreach ( array_reverse( $parents ) as $pageID ) {
+				$position += 1;
+				if ( $position > 1 ) echo $sep;
+				echo sprintf( $link, get_page_link( $pageID ), get_the_title( $pageID ), $position );
+			}
+			if ( $show_current ) echo $sep . $before . get_the_title() . $after;
+			elseif ( $show_last_sep ) echo $sep;
+
+		} elseif ( is_tag() ) {
+			if ( get_query_var( 'paged' ) ) {
+				$position += 1;
+				$tagID = get_query_var( 'tag_id' );
+				echo $sep . sprintf( $link, get_tag_link( $tagID ), single_tag_title( '', false ), $position );
+				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
+			} else {
+				if ( $show_home_link && $show_current ) echo $sep;
+				if ( $show_current ) echo $before . sprintf( $text['tag'], single_tag_title( '', false ) ) . $after;
+				elseif ( $show_home_link && $show_last_sep ) echo $sep;
+			}
+
+		} elseif ( is_author() ) {
+			$author = get_userdata( get_query_var( 'author' ) );
+			if ( get_query_var( 'paged' ) ) {
+				$position += 1;
+				echo $sep . sprintf( $link, get_author_posts_url( $author->ID ), sprintf( $text['author'], $author->display_name ), $position );
+				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
+			} else {
+				if ( $show_home_link && $show_current ) echo $sep;
+				if ( $show_current ) echo $before . sprintf( $text['author'], $author->display_name ) . $after;
+				elseif ( $show_home_link && $show_last_sep ) echo $sep;
+			}
+
+		} elseif ( is_404() ) {
+			if ( $show_home_link && $show_current ) echo $sep;
+			if ( $show_current ) echo $before . $text['404'] . $after;
+			elseif ( $show_last_sep ) echo $sep;
+
+		} elseif ( has_post_format() && ! is_singular() ) {
+			if ( $show_home_link && $show_current ) echo $sep;
+			echo get_post_format_string( get_post_format() );
+		}
+
+		echo $wrap_after;
+
+	}
+} // end of the_breadcrumbs()

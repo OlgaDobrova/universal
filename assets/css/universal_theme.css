@@ -330,7 +330,7 @@ body {
   z-index: 0;
 }
 
-.hero .left .autor {
+.hero .left .author {
   position: relative;
   z-index: 2;
   display: -webkit-box;
@@ -342,18 +342,18 @@ body {
   text-decoration: none;
 }
 
-.hero .left .autor-bio {
+.hero .left .author-bio {
   margin-left: 10px;
 }
 
-.hero .left .autor-name {
+.hero .left .author-name {
   display: block;
   font-size: 14px;
   line-height: 20px;
   color: rgba(255, 255, 255, 0.85);
 }
 
-.hero .left .autor-rank {
+.hero .left .author-rank {
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -2759,4 +2759,25 @@ body {
 .lesson-header {
   padding: 80px 0;
   color: #ffffff;
+}
+
+.breadcrumbs {
+  margin-top: 50px;
+  color: #262D33;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.breadcrumbs__separator {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.breadcrumbs__link {
+  text-decoration: none;
+  color: #262D33;
+}
+
+.breadcrumbs__link::visited {
+  color: #262D33;
 }

@@ -21,12 +21,24 @@
         ?>
           		<!-- Вывода постов, функции цикла: the_title() - заголовок записи и др.-->
               <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-trumb">
-              <?php $autor_id = get_the_author_meta('ID');?>
-              <a href="<?php echo get_author_posts_url($autor_id);?>" class="autor">
-                <img src="<?php echo get_avatar_url($autor_id)?>" alt="" class="avatar">
-                <div class="autor-bio">
-                  <span class="autor-name"><?php the_author();?></span>
-                  <span class="autor-rank">Должность</span>
+              <?php $author_id = get_the_author_meta('ID');?>
+              <a href="<?php echo get_author_posts_url($author_id);?>" class="author">
+                <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="avatar">
+                <div class="author-bio">
+                  <span class="author-name"><?php the_author();?></span>
+                  <!--Выводим должность автора-->
+                  <span class="author-rank"><?php 
+                    //выведем объект со всеми ролями WordPress, обратимся к роли
+                    $roles=wp_roles()->roles;
+                    //текущая роль пользователя
+                    $current_role = get_the_author_meta('roles',$author_id)[0];
+                    //перебираем по 1 значению роли из всех ролей
+                    foreach ($roles as $role=>$value){
+                      if($role == $current_role){
+                        echo $value['name'];
+                      }
+                    }
+                  ?></span>
                 </div>
               </a>
               <div class="post-text">
@@ -197,10 +209,10 @@
                       <!--выводим в блоке инф об авторе-->
                       <div class="author">
                         <!--выясняем ментаданные автора - его ID-->
-                        <?php $autor_id = get_the_author_meta('ID');?>
+                        <?php $author_id = get_the_author_meta('ID');?>
                         <!--выводим по ID аватарку-->
-                        <img src="<?php echo get_avatar_url($autor_id)?>" alt=""  class="author-avatar">
-                        <span class="autor-name"><strong><?php the_author();?></strong>: <?php  the_author_meta('description')?></span>
+                        <img src="<?php echo get_avatar_url($author_id)?>" alt=""  class="author-avatar">
+                        <span class="author-name"><strong><?php the_author();?></strong>: <?php  the_author_meta('description')?></span>
                       </div>
                       <!--выводим в блоке инф о комментариях-->
                       <div class="comments">
@@ -250,9 +262,9 @@
                       <!--выводим в блоке инф об авторе-->
                     <div class="author">
                       <!--выясняем ментаданные автора - его ID-->
-                      <?php $autor_id = get_the_author_meta('ID');?>
+                      <?php $author_id = get_the_author_meta('ID');?>
                       <!--выводим по ID аватарку-->
-                      <img src="<?php echo get_avatar_url($autor_id)?>"   alt=""class="author-avatar">
+                      <img src="<?php echo get_avatar_url($author_id)?>"   alt=""class="author-avatar">
                       
                       <!--создаем еще блок для автора и даты и комментариев и лайков-->
                       <div class="author-info">
@@ -542,7 +554,19 @@ wp_reset_postdata(); // Сбрасываем $post
             <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="author-avatar">
             <div class="author-bio">
               <span class="author-name"><?php the_author();?></span>
-              <span class="author-rank">Должность</span>
+              <!--Выводим должность автора-->
+              <span class="author-rank"><?php 
+                //выведем объект со всеми ролями WordPress, обратимся к роли
+                $roles=wp_roles()->roles;
+                //текущая роль пользователя
+                $current_role = get_the_author_meta('roles',$author_id)[0];
+                //перебираем по 1 значению роли из всех ролей
+                foreach ($roles as $role=>$value){
+                  if($role == $current_role){
+                    echo $value['name'];
+                  }
+                }
+              ?></span>
             </div>
           </a>        
           <h3 class="photo-report-title"><?php the_title();?></h3>
