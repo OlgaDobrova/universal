@@ -400,7 +400,7 @@ body {
 }
 
 .hero .right .post {
-  padding: 17px 25px 19px 25px;
+  padding: 17px 25px 19px 20px;
   margin: 0;
   border-top: 1px solid #D9DADB;
   min-height: 100px;
@@ -2548,12 +2548,21 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.post-permalink1 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+  margin-right: 2%;
+  max-width: 23%;
 }
 
 .post-card {
-  max-width: 23%;
   margin-bottom: 30px;
   border-radius: 10px;
+  height: 100%;
   background-color: #ffffff;
   overflow: hidden;
   margin-right: 2%;
@@ -2780,4 +2789,85 @@ body {
 
 .breadcrumbs__link::visited {
   color: #262D33;
+}
+
+.acor-wrapper {
+  margin: 20px 0;
+}
+
+.acor-wrapper .acor-body {
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  height: 0;
+  color: rgba(0, 0, 0, 0);
+  background-color: #BFE2FF;
+  line-height: 18px;
+  padding: 0 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: color 0.5s, padding 0.5s;
+  transition: color 0.5s, padding 0.5s;
+  overflow: hidden;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 10px 16px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 10px 16px rgba(0, 0, 0, 0.2);
+}
+
+.acor-wrapper .acor-body p {
+  margin: 0 0 10px;
+}
+
+.acor-wrapper label {
+  cursor: pointer;
+  background-color: #337AB7;
+  display: block;
+  padding: 15px 20px;
+  width: 100%;
+  color: #BFE2FF;
+  font-weight: 300;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 100;
+  font-family: Verdana, sans-serif;
+  font-size: 18px;
+  margin: 0 0 5px;
+  -webkit-transition: color .35s;
+  transition: color .35s;
+}
+
+.acor-wrapper label:hover {
+  color: #FFF;
+}
+
+.acor-wrapper input {
+  display: none;
+}
+
+.acor-wrapper label:before {
+  content: '\276F';
+  float: right;
+}
+
+.acor-wrapper input:checked + label {
+  background-color: #285f8f;
+  color: #FFF;
+  -webkit-box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4), 0 28px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4), 0 28px 30px rgba(0, 0, 0, 0.3);
+}
+
+.acor-wrapper input:checked + label:before {
+  -webkit-transition: -webkit-transform .35s;
+  transition: -webkit-transform .35s;
+  transition: transform .35s;
+  transition: transform .35s, -webkit-transform .35s;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.acor-wrapper input:checked + label + .acor-body {
+  height: auto;
+  margin-top: -5px;
+  color: #000;
+  padding: 20px 30px 10px;
 }

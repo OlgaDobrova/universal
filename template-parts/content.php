@@ -176,8 +176,31 @@
 	  			printf( '<span class="tags-links">' . esc_html__( '%1$s', 'universal_theme' ) . '</ span>', $tags_list ); 
 	  		}
 	    ?>
-	  </div>
-    <!-- /.Содержимое поста -->
+	  </div> <!-- /.Содержимое поста -->
+
+
+<!--Аккордеон-->
+    <div class="acor-wrapper"> 
+    
+      <input type="radio" name="acor" id="acor1" checked="checked" />
+      <label for="acor1">Заголовок вкладки</label>
+      <div class="acor-body">
+          <p>Описание вкладки</p>
+      </div>
+        
+      <input type="radio" name="acor" id="acor2" />
+      <label for="acor2">Заголовок вкладки</label>
+      <div class="acor-body">
+          <p>Описание вкладки</p>
+      </div>
+        
+      <input type="radio" name="acor" id="acor3" />
+      <label for="acor3">Заголовок вкладки</label>
+      <div class="acor-body">
+          <p>Описание вкладки</p>
+      </div> 
+    
+    </div><!--acor-wrapper-->
 
 	  <!--Подвал поста-->
     <footer class="post-footer">
